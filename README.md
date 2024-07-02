@@ -3,7 +3,7 @@ This is the official source code for the **Expert System with Applications** wor
 
 ## Table of Content
 
-- [DBF-Net](#ffb6d)
+- [DBF-Net](#dbfnet)
   - [Table of Content](#table-of-content)
   - [Introduction & Citation](#introduction--citation)
   - [Demo Video](#demo-video)
@@ -24,13 +24,13 @@ This is the official source code for the **Expert System with Applications** wor
 ## Introduction & Citation
 <div align=center><img width="100%" src="figs/dbf_net_overview.png"/></div>
 
-**DBF-Net** is a general framework for representation learning from a single RGBD image, and we applied it to the 6D pose estimation task by cascading downstream prediction headers for instance semantic segmentation and 3D keypoint voting prediction from PVN3D([Arxiv](https://arxiv.org/abs/1911.04231), [Code](https://github.com/ethnhe/PVN3D), [Video](https://www.bilibili.com/video/av89408773/)). 
+**DBF-Net** is a general framework for representation learning from a single RGBD image, and we applied it to the 6D pose estimation task by cascading downstream prediction headers for instance semantic segmentation. 
 
 Firstly, we introduce a **sparse linear Transformer** (SLT) with linear computation complexity to capitalize on cross-modal semantic resemblance during the representation learning phase, such that effectively modeling semantic associations between various modalities and efficiently aggregating the globally enhanced features of each modality. SLT builds a sparse attention matrice to adaptively filter out small attention weights, thus effectively mitigating redundant passing.
 
 Secondly, we integrate **positional encoding and feature transformation** into SLT to obtain better feature representations. Once acquiring the two feature representations from the two modalities, we propose a feature balancer (FB) based on SLT to adaptively reconcile the importance of the two feature representations. Leveraging the global receptive field of SLT, FB can effectively eliminate the ambiguity induced by visual similarity in appearance representation or depth missing of reflective surfaces in geometry representations, thereby enhancing the generalization ability and robustness of the network.
 
-Please cite [DBF-Net](https://arxiv.org/abs/2103.02242v1) & [PVN3D](https://arxiv.org/abs/1911.04231) if you use this repository in your publications:
+Please cite [DBF-Net]() if you use this repository in your publications:
 
 ## Installation
 - Install CUDA 10.1 / 10.2
@@ -163,7 +163,7 @@ Please cite [DBF-Net](https://arxiv.org/abs/2103.02242v1) & [PVN3D](https://arxi
   python3 -m torch.distributed.launch --nproc_per_node=1 train_lm.py --gpu '0' --cls $cls -eval_net -checkpoint $tst_mdl -test -test_pose # -debug
   ```
   You can evaluate different checkpoint by revising ``tst_mdl`` to the path of your target model.
-- **Pretrained model**: We provide our pre-trained models for each object on onedrive, \TODO{link}. (The provided pretrained model here get better performance than we reported in our paper, mean ADD-0.1d 99.8). Download them and move them to their according folders. For example, move the ``dbfnet_ape_best.pth.tar`` to ``train_log/linemod/checkpoints/ape/``. Then revise ``tst_mdl=train_log/linemod/checkpoints/ape/dbfnet_ape_best.path.tar`` for testing.
+- **Pretrained model**: We provide our pre-trained models for each object on onedrive, [link](https://pan.baidu.com/s/1-oRFQBV2NpnYaMMHWyScMQ?pwd=0wt3). (The provided pretrained model here get better performance than we reported in our paper, mean ADD-0.1d 99.8). Download them and move them to their according folders. For example, move the ``dbfnet_ape_best.pth.tar`` to ``train_log/linemod/checkpoints/ape/``. Then revise ``tst_mdl=train_log/linemod/checkpoints/ape/dbfnet_ape_best.path.tar`` for testing.
 
 ### Demo/visualizaion on the LineMOD Dataset
 - After training your models or downloading the pre-trained models, you can start the demo by:
@@ -194,7 +194,7 @@ Please cite [DBF-Net](https://arxiv.org/abs/2103.02242v1) & [PVN3D](https://arxi
   python3 -m torch.distributed.launch --nproc_per_node=1 train_ycb.py --gpu '0' -eval_net -checkpoint $tst_mdl -test -test_pose # -debug
   ```
   You can evaluate different checkpoints by revising the ``tst_mdl`` to the path of your target model.
-- **Pretrained model**: We provide our pre-trained models on onedrive, \Todo{here}[here](https://hkustconnect-my.sharepoint.com/:u:/g/personal/yhebk_connect_ust_hk/EW7a5w-ytftLgexIyXuIcjwB4o0dWo1hMteMNlA1zgM7Wg?e=UE1WJs). Download the pre-trained model, move it to ``train_log/ycb/checkpoints/`` and modify ``tst_mdl`` for testing.
+- **Pretrained model**: We provide our pre-trained models on onedrive, [here](https://pan.baidu.com/s/12GMvN3gL_-OgWWuyW90gXQ?pwd=hii0). Download the pre-trained model, move it to ``train_log/ycb/checkpoints/`` and modify ``tst_mdl`` for testing.
 
 ### Demo/visualization on the YCB-Video Dataset
 - After training your model or downloading the pre-trained model, you can start the demo by:
