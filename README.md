@@ -215,7 +215,7 @@ Please cite [DBF-Net]() if you use this repository in your publications:
       <th class="tg-c3ow" colspan="2" style="text-align: center">FFB6D</th>
       <th class="tg-c3ow" colspan="2" style="text-align: center">RCVPose</th>
       <th class="tg-c3ow" colspan="2" style="text-align: center">DFTr</th>
-      <th class="tg-c3ow" colspan="2" style="text-align: center">Our FFF6D</th>
+      <th class="tg-c3ow" colspan="2" style="text-align: center">Our DBFNet</th>
     </tr>
   </thead>
   <tbody>
