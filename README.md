@@ -18,7 +18,6 @@ This is the official source code for the **Expert System with Applications** wor
     - [Evaluating on the YCB-Video Dataset](#evaluating-on-the-ycb-video-dataset)
     - [Demo/visualization on the YCB-Video Dataset](#demovisualization-on-the-ycb-video-dataset)
   - [Results](#results)
-  - [Adaptation to New Dataset](#adaptation-to-new-dataset)
   - [License](#license)
 
 ## Introduction & Citation
@@ -321,20 +320,6 @@ Please cite [DBF-Net]() if you use this repository in your publications:
     </tr>
   </tbody>
   </table>
-
-## Adaptation to New Dataset
-- Install and generate required mesh info following [DSTOOL_README](./dbfnet/utils/dataset_tools/DSTOOL_README.md).
-- Modify info of your new dataset in ```dbfnet/ffb6d/common.py``` 
-- Write your dataset preprocess script following ```dbfnet/ffb6d/datasets/ycb/ycb_dataset.py```. Note that you should modify or call the function that get your model info, such as 3D keypoints, center points, and radius properly.
-- (**Very Important!**) Visualize and check if you process the data properly, eg, the projected keypoints and center point, the semantic label of each point, etc. For example, you can visualize the projected center point (red point) and selected keypoints (orange points) as follow by running ```python3 -m datasets.ycb.ycb_dataset```.
-  <div align=center><img width="60%" src="figs/shown_kp_ycb.png"/></div>
-
-- For inference, make sure that you load the 3D keypoints, center point, and radius of your objects in the object coordinate system properly in ```dbfnet/dbfnet/utils/pvn3d_eval_utils.py```.
-- Check that all setting are modified properly by using the ground truth information for evaluation. The result should be high and close to 100 if everything is correct. For example, testing ground truth on the YCB_Video dataset by passing ```-test_gt``` parameters to ```train_ycb.py``` will get results higher than 99.99:
-  ```
-  tst_mdl=train_log/ycb/checkpoints/dbfnet_best.pth.tar
-  python3 -m torch.distributed.launch --nproc_per_node=1 train_ycb.py --gpu '0' -eval_net -checkpoint $tst_mdl -test -test_pose -test_gt
-  ```
 
 ## License
 Licensed under the [MIT License](./LICENSE).
